@@ -51,7 +51,7 @@ public class Application {
         
         registration.setFilter(sessionFilter());
         registration.addUrlPatterns("/*");
-//        registration.addInitParameter("paramName", "paramValue");
+        // registration.addInitParameter("paramName", "paramValue");
         registration.setName("sessionFilter");
         return registration;
     }

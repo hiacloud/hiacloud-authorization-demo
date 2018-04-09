@@ -21,7 +21,7 @@ public class Permission {
 	private String name;
 	@ApiModelProperty("英文名称")
 	private String ename;
-	@ApiModelProperty("类型，具体值视设置而定")
+	@ApiModelProperty("类型")
 	private String type;
 	@ApiModelProperty("值")
 	private String value;

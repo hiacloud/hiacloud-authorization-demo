@@ -5,6 +5,9 @@ package com.hiacloud.demo.rest;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
   * 
   * @ClassName: AbstractResponse
@@ -13,6 +16,7 @@ import java.io.Serializable;
   * @date 2015年7月2日 下午12:14:44
   *
  */
+@ApiModel("响应")
 public class BaseResponse implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -30,14 +34,19 @@ public class BaseResponse implements Serializable {
 	
 	
     /** 响应是否成功. */
+	@ApiModelProperty("响应是否成功")
     private boolean success = false;
     /** 响应的操作信息. */
+	@ApiModelProperty("响应的操作信息")
     private String msg;
     /** 错误信息. */
+	@ApiModelProperty("错误信息")
     private String error;
     /** 错误代码    */
+	@ApiModelProperty("错误码")
     private String errno;
     /** 返回的对象   */
+	@ApiModelProperty("返回对象")
     private Object obj;
 
     public BaseResponse() {}

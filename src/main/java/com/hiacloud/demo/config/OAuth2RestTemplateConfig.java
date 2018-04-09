@@ -1,4 +1,4 @@
-package com.hiacloud.demo;
+package com.hiacloud.demo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.client.token.grant.client.ClientCrede
 import org.springframework.security.oauth2.common.AuthenticationScheme;
 
 @Configuration
-public class OAuthConfig {
+public class OAuth2RestTemplateConfig {
 	private final String GRANT_CLIENT_CREDENTIALS = "client_credentials";
 
 	@Value("${security.oauth2.client.clientId}")

@@ -3,8 +3,6 @@ package com.hiacloud.demo.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -15,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Service;
 
-import com.hiacloud.demo.Constants;
+import com.hiacloud.demo.config.Apis;
 import com.hiacloud.demo.model.Permission;
 import com.hiacloud.demo.model.User;
 
@@ -25,7 +23,7 @@ import net.sf.json.JSONObject;
 public class LoginService {
 	@Autowired
 	private OAuth2RestTemplate restTemplate;
-	@Value("${UAA_URL}")
+	@Value("${uaa_url}")
 	private String baseUrl;
 	
 
@@ -42,7 +40,7 @@ public class LoginService {
         headers.add("Accept", MediaType.APPLICATION_JSON.toString());  
         HttpEntity<String> formEntity = new HttpEntity<String>(headers);  
 		ResponseEntity<String> resp = restTemplate.exchange(
-				baseUrl + Constants.API_CHECK_USER + "?loginName=" + loginName + "&password=" + password, 
+				baseUrl + Apis.API_CHECK_USER + "?loginName=" + loginName + "&password=" + password, 
 				HttpMethod.GET, formEntity, String.class);
 		
 		Boolean result = JSONObject.fromObject(resp.getBody()).getBoolean("success");
@@ -51,7 +49,7 @@ public class LoginService {
 		}
 		
 		// 2. 获取用户信息
-		resp = restTemplate.exchange(baseUrl + Constants.API_GET_USER + "?loginName=" + loginName , HttpMethod.GET, null, String.class);
+		resp = restTemplate.exchange(baseUrl + Apis.API_GET_USER + "?loginName=" + loginName , HttpMethod.GET, null, String.class);
 		JSONObject userObject = JSONObject.fromObject(resp.getBody()).getJSONObject("obj");
 		User user = new User();
 		user.setName(userObject.getString("name"));
@@ -59,7 +57,7 @@ public class LoginService {
 		user.setCode(userObject.getString("code"));
 		
 		// 3. 获取用户权限
-		resp = restTemplate.exchange(baseUrl + Constants.API_GET_PERMISSIONS+ "?userCode=" + user.getCode() , HttpMethod.GET, null, String.class);
+		resp = restTemplate.exchange(baseUrl + Apis.API_GET_PERMISSIONS+ "?userCode=" + user.getCode() , HttpMethod.GET, null, String.class);
 		JSONArray permissions = JSONObject.fromObject(resp.getBody()).getJSONArray("obj");
 		List<Permission> list = new ArrayList<>();
 		for (Object object : permissions) {

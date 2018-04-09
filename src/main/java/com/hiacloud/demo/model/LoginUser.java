@@ -1,8 +1,14 @@
 package com.hiacloud.demo.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("用户登录")
 public class LoginUser {
-	String password;
+	@ApiModelProperty("用户名")
 	String loginName;
+	@ApiModelProperty("密码")
+	String password;
 	public String getPassword() {
 		return password;
 	}
