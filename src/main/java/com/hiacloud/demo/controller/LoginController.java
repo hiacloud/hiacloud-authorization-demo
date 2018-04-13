@@ -28,7 +28,7 @@ public class LoginController{
 	@Autowired
 	LoginService loginService;
 	
-	@ApiOperation(value="登录",notes="测试用户可以使用admin/111111")
+	@ApiOperation(value="登录",notes="测试用户可以使用admin/111111;在请求的header中必须有Origin,类似：http://zone1.cloud.com:90。")
 	@RequestMapping(method = POST, value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public LoginResponse login(@ApiParam("登录信息") @RequestBody final LoginUser loginUser,
 			HttpServletRequest request, HttpServletResponse response) {
