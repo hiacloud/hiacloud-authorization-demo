@@ -6,7 +6,7 @@ server:
 security:
   oauth2:
     client:
-      accessTokenUri: ${HIACLOUD_UAA_TOKEN_URL:http://59.110.14.235:28380/uaa/oauth/token}
+      accessTokenUri: ${HIACLOUD_UAA_TOKEN_URL:http://127.0.0.1:8089/uaa/oauth/token}
       clientId: ${HIACLOUD_CLIENT_ID:yangpeng}
       clientSecret: ${HIACLOUD_CLIENT_SECRET:ypp}
 logging:
@@ -14,4 +14,4 @@ logging:
     org.springframework.security: DEBUG
       
 # custom properties
-uaa_url: ${HIACLOUD_MODEL_URL:http://59.110.14.235:28380/uaa}
+uaa_url: ${HIACLOUD_MODEL_URL:http://127.0.0.1:8089/uaa}
