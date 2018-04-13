@@ -15,6 +15,6 @@ http://localhost:9999/demo/swagger-ui.html
  ```
  2. 不同二级域名情况下，同名用户登录测试
  - http://zone1.cloud.com:9999/demo/index.html
-   ![此处输入图片的描述]（http://img.zcool.cn/community/018d4e554967920000019ae9df1533.jpg@1280w_1l_2o_100sh.webp）
+   ![zone1](./images/zone1.png)
  - http://zone2.cloud.com:9999/demo/index.html
-   ![此处输入图片的描述][2]
+   ![zone2](./images/zone2.png)
