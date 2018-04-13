@@ -33,7 +33,11 @@ public class LoginController{
 	public LoginResponse login(@ApiParam("登录信息") @RequestBody final LoginUser loginUser,
 			HttpServletRequest request, HttpServletResponse response) {
 		LoginResponse resp = new LoginResponse();
-		User user = loginService.login(loginUser.getLoginName(), loginUser.getPassword());
+		String serverName = request.getHeader("Origin");
+		// http://zone1.cloud.com:90
+		String zoneCode = serverName.substring(7, serverName.indexOf("."));
+		
+		User user = loginService.login(zoneCode ,loginUser.getLoginName(), loginUser.getPassword());
 		if(null == user){
 			resp.setMsg("登录失败，请检查用户名及密码");
 		}

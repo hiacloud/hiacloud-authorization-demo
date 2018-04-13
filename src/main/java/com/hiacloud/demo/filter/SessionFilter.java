@@ -83,6 +83,9 @@ public class SessionFilter implements Filter {
             }
         }
     	
+    	if(url.endsWith(".html") || url.endsWith(".css") || url.endsWith(".js")) {
+    		return true;
+    	}
     	// TODO 如果有游客角色设置，请在此处加入游客可访问的permission
     	
         return false;

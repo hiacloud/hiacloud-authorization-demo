@@ -33,14 +33,14 @@ public class LoginService {
 	 * @param password
 	 * @return 如果用户不合法，则返回空
 	 */
-	public User login(String loginName,String password){
+	public User login(String zoneCode, String loginName,String password){
 		// 1. 检查用户是否合法
 		HttpHeaders headers = new HttpHeaders();  
         headers.setContentType(MediaType.parseMediaType("application/json; charset=UTF-8"));  
         headers.add("Accept", MediaType.APPLICATION_JSON.toString());  
         HttpEntity<String> formEntity = new HttpEntity<String>(headers);  
 		ResponseEntity<String> resp = restTemplate.exchange(
-				baseUrl + Apis.API_CHECK_USER + "?loginName=" + loginName + "&password=" + password, 
+				baseUrl + Apis.API_CHECK_USER + "?loginName=" + loginName + "&password=" + password  + "&zoneCode=" + zoneCode, 
 				HttpMethod.GET, formEntity, String.class);
 		
 		Boolean result = JSONObject.fromObject(resp.getBody()).getBoolean("success");
@@ -49,12 +49,13 @@ public class LoginService {
 		}
 		
 		// 2. 获取用户信息
-		resp = restTemplate.exchange(baseUrl + Apis.API_GET_USER + "?loginName=" + loginName , HttpMethod.GET, null, String.class);
+		resp = restTemplate.exchange(baseUrl + Apis.API_GET_USER + "?loginName=" + loginName  + "&zoneCode=" + zoneCode, HttpMethod.GET, null, String.class);
 		JSONObject userObject = JSONObject.fromObject(resp.getBody()).getJSONObject("obj");
 		User user = new User();
 		user.setName(userObject.getString("name"));
 		user.setLoginName(userObject.getString("loginName"));
 		user.setCode(userObject.getString("code"));
+		user.setZoneCode(userObject.getString("zoneCode"));
 		
 		// 3. 获取用户权限
 		resp = restTemplate.exchange(baseUrl + Apis.API_GET_PERMISSIONS+ "?userCode=" + user.getCode() , HttpMethod.GET, null, String.class);

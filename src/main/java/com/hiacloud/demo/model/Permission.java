@@ -54,7 +54,7 @@ public class Permission {
 	@ApiModelProperty("所属域")
 	private String zoneCode;
 	@ApiModelProperty("是否基础权限。true:是，false：否。")
-	private boolean buildin;
+	private Boolean buildin;
 	
 	private List<Permission> children;
 	

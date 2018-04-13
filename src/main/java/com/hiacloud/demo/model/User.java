@@ -14,9 +14,17 @@ public class User {
 	String loginName;
 	@ApiModelProperty("session token")
 	String token;
+	@ApiModelProperty("域编号")
+	String zoneCode;
 	@ApiModelProperty("权限列表")
 	List<Permission> permissions;
 	
+	public String getZoneCode() {
+		return zoneCode;
+	}
+	public void setZoneCode(String zoneCode) {
+		this.zoneCode = zoneCode;
+	}
 	public String getName() {
 		return name;
 	}
@@ -50,7 +58,7 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [code=" + code + ", name=" + name + ", loginName=" + loginName + ", token=" + token
-				+ ", permissions=" + permissions + "]";
+		return "User [code=" + code + ", name=" + name + ", loginName=" + loginName + ", token=" + token + ", zoneCode="
+				+ zoneCode + ", permissions=" + permissions + "]";
 	}
 }
